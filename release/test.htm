@@ -1,0 +1,62 @@
+
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<TITLE>测试页面</TITLE>
+</HEAD>
+
+<BODY>
+	<div class="playersquare">
+
+		<div id="flashwindow"></div>
+
+		<script type="text/javascript">
+			<!--			
+			function ReadShort() {
+				var flash = document.getElementById("FlashNess");
+				var result = flash.ReadShort;
+				alert(result);
+			}
+
+			function WriteData() {
+				var flash = document.getElementById("FlashNess");
+				var result = flash.WriteData("card://url=www.ant.sh&user=suhao");
+				var data = flash.ReadData;
+				alert(data);
+			}
+			
+			function isIE() { //ie?  
+				if (!!window.ActiveXObject || "ActiveXObject" in window)  
+					return true;  
+				return false;  
+			}
+			
+			function FlashNessPlugin(id, opts){
+                var opts = opts || {},self = this;
+				this.width = opts.width || "600";
+                this.height = opts.height || "500";
+				this.flash = this.pluginObject().replace(/\{\{width\}\}/,this.width).replace(/\{\{height\}\}/,this.height);
+                this.objectConfine = document.getElementById(id);
+                this.objectConfine.innerHTML = this.flash;
+            }
+            FlashNessPlugin.prototype={
+                pluginObject : function(){
+					var head = '<object id="FlashNess" width="{{width}}" height="{{height}}" ';
+					var sign = (isIE() ? 'CLASSID="CLSID:6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB">' : 'type="application/npFlashNess">');
+                    var tail = '<param NAME="clsid" value="{6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB}"></object>';
+                    return (head+sign+tail);
+                }
+            }
+			new FlashNessPlugin("flashwindow");
+			//-->
+		</script>
+	</div>
+	
+	<p name="??">
+		<button onclick="ReadShort()"> ReadShort测试 </button>
+		<button onclick="WriteData()"> WriteData测试 </button>
+	</p>
+
+</BODY>
+
+
+

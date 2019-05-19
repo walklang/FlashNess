@@ -1,0 +1,32 @@
+HKCR
+{
+	XLIB.FlashNess.1 = s 'FlashNess Class'
+	{
+		CLSID = s '{6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB}'
+	}
+	XLIB.FlashNess = s 'FlashNess Class'
+	{		
+		CurVer = s 'XLIB.FlashNess.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB} = s 'FlashNess Class'
+		{
+			ProgID = s 'XLIB.FlashNess.1'
+			VersionIndependentProgID = s 'XLIB.FlashNess'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove Control
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 106'
+			MiscStatus = s '0'
+			{
+			    '1' = s '%OLEMISC%'
+			}
+			TypeLib = s '{77696C48-E4FB-48DB-866A-546054491C2A}'
+			Version = s '1.0'
+		}
+	}
+}

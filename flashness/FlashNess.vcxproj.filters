@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="mozilla">
+      <UniqueIdentifier>{9fdb618a-a7cd-4c7c-ada0-cd09fe22f897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npapi">
+      <UniqueIdentifier>{4ca3d96c-08ee-41b8-a8cb-96ea092211bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="npplugin">
+      <UniqueIdentifier>{7be311ec-6c52-4855-a3cf-ae34067cfb60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="regs">
+      <UniqueIdentifier>{02a0e0f3-8ff8-4944-9c63-a3214280636c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flashness">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="wizard">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="wizard\rc">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="wizard\gen">
+      <UniqueIdentifier>{cdb36df6-cd8b-4561-9c92-ddd9ee17ed00}</UniqueIdentifier>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\mozilla\ControlEventSink.cpp">
+      <Filter>mozilla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mozilla\ControlSite.cpp">
+      <Filter>mozilla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mozilla\ControlSiteIPFrame.cpp">
+      <Filter>mozilla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mozilla\ItemContainer.cpp">
+      <Filter>mozilla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mozilla\PluginEventSink.cpp">
+      <Filter>mozilla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\mozilla\PropertyBag.cpp">
+      <Filter>mozilla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npapi\sdk\samples\include\pluginbase.cpp">
+      <Filter>npapi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\np_entry.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\npn_gate.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\npp_gate.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\AxHost.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\NPSafeArray.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\variants.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\plugin.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\PluginImpl.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\PluginObj.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\PluginObjBase.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\PluginObjImpl.cpp">
+      <Filter>npplugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\npPlugin.cpp">
+      <Filter>mozilla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regs\AxRegistration.cpp">
+      <Filter>regs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\regs\PerUserRegistration.cpp">
+      <Filter>regs</Filter>
+    </ClCompile>
+    <ClCompile Include="wizard\compreg.cpp">
+      <Filter>wizard</Filter>
+    </ClCompile>
+    <ClCompile Include="wizard\dllmain.cpp">
+      <Filter>wizard</Filter>
+    </ClCompile>
+    <ClCompile Include="wizard\stdafx.cpp">
+      <Filter>wizard</Filter>
+    </ClCompile>
+    <ClCompile Include="wizard\xdlldata.c">
+      <Filter>wizard</Filter>
+    </ClCompile>
+    <ClCompile Include="wizard\gen\FlashNess_i.c">
+      <Filter>wizard\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="FlashNess.cpp">
+      <Filter>flashness</Filter>
+    </ClCompile>
+    <ClCompile Include="FlashNessLib.cpp">
+      <Filter>flashness</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\mozilla\ControlEventSink.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mozilla\ControlSite.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mozilla\ControlSiteIPFrame.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mozilla\IOleCommandTargetImpl.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mozilla\ItemContainer.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mozilla\PluginEventSink.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mozilla\PropertyBag.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\mozilla\PropertyList.h">
+      <Filter>mozilla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npapi\sdk\samples\include\npobjproxy.h">
+      <Filter>npapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npapi\sdk\samples\include\pluginbase.h">
+      <Filter>npapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npapi\sdk\samples\include\npplat.h">
+      <Filter>npapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npapi\sdk\samples\include\npPlugin.h">
+      <Filter>npapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\AxHost.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\IPersistProperty.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\NPSafeArray.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\UserAgent.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\variants.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\NodeParse.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\plugin.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\IPluginObj.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\PluginObj.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\npplugin\PluginObjBase.h">
+      <Filter>npplugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regs\AxRegistration.h">
+      <Filter>regs</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\compreg.h">
+      <Filter>wizard</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\dllmain.h">
+      <Filter>wizard</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\stdafx.h">
+      <Filter>wizard</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\targetver.h">
+      <Filter>wizard</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\xdlldata.h">
+      <Filter>wizard</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\gen\FlashNess_i.h">
+      <Filter>wizard\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\regs\PerUserRegistration.h">
+      <Filter>regs</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\rc\resource.h">
+      <Filter>wizard\rc</Filter>
+    </ClInclude>
+    <ClInclude Include="FlashNess.h">
+      <Filter>flashness</Filter>
+    </ClInclude>
+    <ClInclude Include="wizard\_IFlashNessEvents_CP.h">
+      <Filter>wizard</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="wizard\rc\FlashNess.rc">
+      <Filter>wizard\rc</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wizard\FlashNess.def">
+      <Filter>wizard</Filter>
+    </None>
+    <None Include="wizard\rc\FlashNessPlugin.rgs">
+      <Filter>wizard\rc</Filter>
+    </None>
+    <None Include="wizard\rc\FlashNess.rgs">
+      <Filter>wizard\rc</Filter>
+    </None>
+    <None Include="wizard\rc\FlashNess.bmp">
+      <Filter>wizard\rc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="FlashNess.idl">
+      <Filter>flashness</Filter>
+    </Midl>
+  </ItemGroup>
+</Project>

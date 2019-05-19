@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{94E2ECD2-E780-4E71-B173-A2924BAF0DEC}</ProjectGuid>
+    <Keyword>AtlProj</Keyword>
+    <ProjectName>npFlashNess</ProjectName>
+    <WindowsTargetPlatformVersion>
+    </WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <UseOfAtl>Dynamic</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <UseOfAtl>Dynamic</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(SolutionDir)intermediate\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)intermediate\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;_MERGE_PROXYSTUB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)mozilla\;$(SolutionDir)npapi\base\public\;$(SolutionDir)npapi\sdk\samples\common\;$(SolutionDir)npapi\sdk\samples\include\;$(SolutionDir)npplugin\;$(SolutionDir)flashness\;$(SolutionDir)flashness\wizard\;$(SolutionDir)flashness\wizard\gen\;$(SolutionDir)flashness\wizard\rc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessFlashNessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>$(SolutionDir)\flashness\wizard\gen\FlashNess_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>$(SolutionDir)\flashness\wizard\gen\FlashNess_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>$(SolutionDir)\flashness\wizard\gen\FlashNess_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(SolutionDir)\flashness\wizard\gen\FlashNess.tlb</TypeLibraryName>
+      <DllDataFileName>
+      </DllDataFileName>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>$(SolutionDir)\flashness\wizard\FlashNess.def</ModuleDefinitionFile>
+      <AdditionalDependencies>comsvcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RegisterOutput>true</RegisterOutput>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;_MERGE_PROXYSTUB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)mozilla\;$(SolutionDir)npapi\base\public\;$(SolutionDir)npapi\sdk\samples\common\;$(SolutionDir)npapi\sdk\samples\include\;$(SolutionDir)npplugin\;$(SolutionDir)flashness\;$(SolutionDir)flashness\wizard\;$(SolutionDir)flashness\wizard\gen\;$(SolutionDir)flashness\wizard\rc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>$(SolutionDir)\flashness\wizard\gen\FlashNess_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>$(SolutionDir)\flashness\wizard\gen\FlashNess_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>$(SolutionDir)\flashness\wizard\gen\FlashNess_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(SolutionDir)\flashness\wizard\gen\FlashNess.tlb</TypeLibraryName>
+      <DllDataFileName>
+      </DllDataFileName>
+      <ValidateAllParameters>true</ValidateAllParameters>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>$(SolutionDir)\flashness\wizard\FlashNess.def</ModuleDefinitionFile>
+      <AdditionalDependencies>comsvcs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <RegisterOutput>true</RegisterOutput>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\mozilla\ControlEventSink.cpp" />
+    <ClCompile Include="..\mozilla\ControlSite.cpp" />
+    <ClCompile Include="..\mozilla\ControlSiteIPFrame.cpp" />
+    <ClCompile Include="..\mozilla\ItemContainer.cpp" />
+    <ClCompile Include="..\mozilla\PluginEventSink.cpp" />
+    <ClCompile Include="..\mozilla\PropertyBag.cpp" />
+    <ClCompile Include="..\npapi\sdk\samples\include\pluginbase.cpp" />
+    <ClCompile Include="..\npplugin\AxHost.cpp" />
+    <ClCompile Include="..\npplugin\npn_gate.cpp" />
+    <ClCompile Include="..\npplugin\npPlugin.cpp" />
+    <ClCompile Include="..\npplugin\npp_gate.cpp" />
+    <ClCompile Include="..\npplugin\NPSafeArray.cpp" />
+    <ClCompile Include="..\npplugin\np_entry.cpp" />
+    <ClCompile Include="..\npplugin\plugin.cpp" />
+    <ClCompile Include="..\npplugin\PluginImpl.cpp" />
+    <ClCompile Include="..\npplugin\PluginObj.cpp" />
+    <ClCompile Include="..\npplugin\PluginObjBase.cpp" />
+    <ClCompile Include="..\npplugin\PluginObjImpl.cpp" />
+    <ClCompile Include="..\npplugin\variants.cpp" />
+    <ClCompile Include="..\regs\AxRegistration.cpp" />
+    <ClCompile Include="..\regs\PerUserRegistration.cpp" />
+    <ClCompile Include="wizard\compreg.cpp" />
+    <ClCompile Include="wizard\dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="FlashNess.cpp" />
+    <ClCompile Include="FlashNessLib.cpp" />
+    <ClCompile Include="wizard\gen\FlashNess_i.c">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="wizard\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="wizard\xdlldata.c">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\mozilla\ControlEventSink.h" />
+    <ClInclude Include="..\mozilla\ControlSite.h" />
+    <ClInclude Include="..\mozilla\ControlSiteIPFrame.h" />
+    <ClInclude Include="..\mozilla\IOleCommandTargetImpl.h" />
+    <ClInclude Include="..\mozilla\ItemContainer.h" />
+    <ClInclude Include="..\mozilla\PluginEventSink.h" />
+    <ClInclude Include="..\mozilla\PropertyBag.h" />
+    <ClInclude Include="..\mozilla\PropertyList.h" />
+    <ClInclude Include="..\npapi\sdk\samples\include\npobjproxy.h" />
+    <ClInclude Include="..\npapi\sdk\samples\include\npplat.h" />
+    <ClInclude Include="..\npapi\sdk\samples\include\npPlugin.h" />
+    <ClInclude Include="..\npapi\sdk\samples\include\pluginbase.h" />
+    <ClInclude Include="..\npplugin\AxHost.h" />
+    <ClInclude Include="..\npplugin\IPersistProperty.h" />
+    <ClInclude Include="..\npplugin\IPluginObj.h" />
+    <ClInclude Include="..\npplugin\NodeParse.h" />
+    <ClInclude Include="..\npplugin\NPSafeArray.h" />
+    <ClInclude Include="..\npplugin\plugin.h" />
+    <ClInclude Include="..\npplugin\PluginObj.h" />
+    <ClInclude Include="..\npplugin\PluginObjBase.h" />
+    <ClInclude Include="..\npplugin\UserAgent.h" />
+    <ClInclude Include="..\npplugin\variants.h" />
+    <ClInclude Include="..\regs\AxRegistration.h" />
+    <ClInclude Include="..\regs\PerUserRegistration.h" />
+    <ClInclude Include="wizard\rc\resource.h" />
+    <ClInclude Include="wizard\compreg.h" />
+    <ClInclude Include="wizard\dllmain.h" />
+    <ClInclude Include="wizard\stdafx.h" />
+    <ClInclude Include="wizard\targetver.h" />
+    <ClInclude Include="wizard\xdlldata.h" />
+    <ClInclude Include="wizard\gen\FlashNess_i.h" />
+    <ClInclude Include="FlashNess.h" />
+    <ClInclude Include="wizard\_IFlashNessEvents_CP.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="wizard\rc\FlashNess.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wizard\rc\FlashNess.bmp" />
+    <None Include="wizard\rc\FlashNessPlugin.rgs" />
+    <None Include="wizard\rc\FlashNess.rgs" />
+    <None Include="wizard\FlashNess.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="FlashNess.idl">
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess_p.c</ProxyFileName>
+      <TypeLibraryName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess.tlb</TypeLibraryName>
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess_p.c</ProxyFileName>
+      <TypeLibraryName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)flashness\wizard\gen\FlashNess.tlb</TypeLibraryName>
+      <DllDataFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)flashness\wizard\gen\dlldata.c</DllDataFileName>
+    </Midl>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

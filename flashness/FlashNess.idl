@@ -1,0 +1,74 @@
+// FlashNess.idl : FlashNess 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(FlashNess.tlb)和封送处理代码。
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(a817e7a2-43fa-11d0-9e44-00aa00b6770a),
+	dual,	
+	pointer_default(unique)
+]
+interface IComponentRegistrar : IDispatch
+{
+	[id(1)]	HRESULT Attach([in] BSTR bstrPath);
+	[id(2)]	HRESULT RegisterAll();
+	[id(3)]	HRESULT UnregisterAll();
+	[id(4)]	HRESULT GetComponents([out] SAFEARRAY(BSTR)* pbstrCLSIDs, [out] SAFEARRAY(BSTR)* pbstrDescriptions);
+	[id(5)]	HRESULT RegisterComponent([in] BSTR bstrCLSID);
+	[id(6)] HRESULT UnregisterComponent([in] BSTR bstrCLSID);
+};
+
+
+[
+	object,
+	uuid(13953020-A524-47F3-9C07-D384E0380EE3),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IFlashNess : IDispatch{
+	[id(1)]	HRESULT WriteData([in] BSTR bstrPath);
+	[propget, id(2)] HRESULT ReadShort([out, retval] SHORT* pVal);
+    [propget, id(3)] HRESULT ReadData([out, retval] BSTR* data);
+};
+
+[
+	uuid(77696C48-E4FB-48DB-866A-546054491C2A),
+	version(1.0),
+	custom(a817e7a1-43fa-11d0-9e44-00aa00b6770a,"{3C1338E5-80F7-4D95-B00F-54BC8A3FC64C}")
+]
+library FlashNessLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(3C1338E5-80F7-4D95-B00F-54BC8A3FC64C)		
+	]
+	coclass CompReg
+	{
+		[default] interface IComponentRegistrar;
+	};
+	[
+		uuid(5D6EAB78-98C7-4591-93CF-6B16BDB7F165)		
+	]
+	dispinterface _IFlashNessEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB),		
+		control
+	]
+	coclass FlashNess
+	{
+		[default] interface IFlashNess;
+		[default, source] dispinterface _IFlashNessEvents;
+	};
+};
+

@@ -1,0 +1,13 @@
+; FlashNess.def : 定义模块参数。
+
+LIBRARY
+
+EXPORTS
+	DllCanUnloadNow		PRIVATE
+	DllGetClassObject	PRIVATE
+	DllRegisterServer	PRIVATE
+	DllUnregisterServer	PRIVATE
+	DllInstall		PRIVATE
+	NP_GetEntryPoints   
+	NP_Initialize       
+	NP_Shutdown
