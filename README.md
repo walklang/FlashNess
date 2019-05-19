@@ -53,8 +53,51 @@ Application of Outdated NPAPI Technology.
 
 2. 使用向导新建ATL接口
 
+    详情搜索COM组件，新建接口即可
 
 3. NPAPI接口扩展(可选)
+
+    FlashNess已经模拟兼容NPAPI和ActiveX的接口调用，搜索ActiveX增加接口函数即可快速实现IE和FF/chrome浏览器的兼容实现。
+
+4. 接口新增实例介绍
+
+    FlashNess中实现了Get接口和Set接口方法，其他形式可以参考实现；用户可以自行搜索IDL格式以及实现方式。需要注意的是：如果是Get接口(如ReadData)，那么实现时的函数名前需要加上get_(如get_ReadData)。用户可以通过如下两个文件参考实现。
+
+* 打开FlashNess.idl文件，向IFlashNess接口新增函数
+
+    ```
+    interface IFlashNess : IDispatch{
+	    [id(1)]	HRESULT WriteData([in] BSTR bstrPath);
+	    [propget, id(2)] HRESULT ReadShort([out, retval] SHORT* pVal);
+        [propget, id(3)] HRESULT ReadData([out, retval] BSTR* data);
+    };
+    ```
+
+* 打开FlashNess.h文件，在文件结尾新增接口实现
+
+    ```
+    STDMETHOD(WriteData)(BSTR bstrPath) {
+        if (bstrPath == nullptr) return S_FALSE;
+        ATL::CComBSTR bstr_val = bstrPath;
+        data_ = bstr_val;
+        return S_OK;
+    }
+
+    STDMETHOD(get_ReadShort)(SHORT* pVal){
+        *pVal = 1;
+        return S_OK;
+    } 
+
+    STDMETHOD(get_ReadData)(BSTR* pVal) {
+        if (!pVal) return S_FALSE;
+        std::string temp = CT2AEX<>(data_.c_str());
+        CComBSTR value(temp.c_str());
+        *pVal = value.Detach();
+        return S_OK;
+    }
+
+    std::wstring data_;
+    ```
 
 
 
