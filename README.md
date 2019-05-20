@@ -100,5 +100,9 @@ Application of Outdated NPAPI Technology.
     ```
 
 
+# NPAPI可参考文档
+
+* https://developer.mozilla.org/en-US/docs/Archive/Mozilla/Compiling_The_npruntime_Sample_Plugin_in_Visual_Studio
+* https://blog.csdn.net/csdnwei/article/details/53606497
 
 
