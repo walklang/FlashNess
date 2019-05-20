@@ -104,5 +104,5 @@ Application of Outdated NPAPI Technology.
 
 * https://developer.mozilla.org/en-US/docs/Archive/Mozilla/Compiling_The_npruntime_Sample_Plugin_in_Visual_Studio
 * https://blog.csdn.net/csdnwei/article/details/53606497
-
+* https://developer.mozilla.org/en-US/docs/Plugins/Guide/Plug-in_Basics#How_Gecko_Finds_Plug-ins
 
