@@ -1,19 +1,26 @@
 HKCR
 {
-	XLIB.FlashNess.1 = s 'FlashNess Class'
+	NoRemove 'Component Categories'
+	{
+		NoRemove {0DE86A57-2BAA-11CF-A229-00AA003D7352}
+		NoRemove {40FC6ED4-2438-11cf-A3DB-080036F12502}
+		NoRemove {7DD95801-9882-11CF-9FA9-00AA006C42C4}
+		NoRemove {7DD95802-9882-11CF-9FA9-00AA006C42C4}
+	}
+	ANT.FlashNess.1 = s 'FlashNess Class'
 	{
 		CLSID = s '{6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB}'
 	}
-	XLIB.FlashNess = s 'FlashNess Class'
+	ANT.FlashNess = s 'FlashNess Class'
 	{		
-		CurVer = s 'XLIB.FlashNess.1'
+		CurVer = s 'ANT.FlashNess.1'
 	}
 	NoRemove CLSID
 	{
 		ForceRemove {6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB} = s 'FlashNess Class'
 		{
-			ProgID = s 'XLIB.FlashNess.1'
-			VersionIndependentProgID = s 'XLIB.FlashNess'
+			ProgID = s 'ANT.FlashNess.1'
+			VersionIndependentProgID = s 'ANT.FlashNess'
 			ForceRemove Programmable
 			InprocServer32 = s '%MODULE%'
 			{
@@ -27,6 +34,13 @@ HKCR
 			}
 			TypeLib = s '{77696C48-E4FB-48DB-866A-546054491C2A}'
 			Version = s '1.0'
+			Implemented Categories
+			{	
+				{0DE86A57-2BAA-11CF-A229-00AA003D7352}
+				{40FC6ED4-2438-11cf-A3DB-080036F12502}
+				{7DD95801-9882-11CF-9FA9-00AA006C42C4}
+				{7DD95802-9882-11CF-9FA9-00AA006C42C4}
+			}
 		}
 	}
 }

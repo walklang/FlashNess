@@ -24,7 +24,7 @@ CAxRegistration::CAxRegistration() {
 
     CAxRegistryWorker::MozillaPlugin mozillaPlugin;
 
-    FlashNessPlugin.clsid = L"{9A5A0A7D-30B2-4CBC-859C-90A6DF560BEF}";
+    FlashNessPlugin.clsid = L"{6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB}";
     mozillaPlugin.listName = L"@ant.sh/npFlashNess";
     mozillaPlugin.mimeName = L"application/npFlashNess";
     mozillaPlugin.productName = L"npFlashNess";

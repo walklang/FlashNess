@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Sun May 19 21:58:56 2019
+/* at Tue May 21 01:15:42 2019
  */
 /* Compiler settings for FlashNess.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -280,14 +280,26 @@ EXTERN_C const IID IID_IFlashNess;
     IFlashNess : public IDispatch
     {
     public:
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE WriteData( 
-            /* [in] */ BSTR bstrPath) = 0;
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE InitDevice( 
+            /* [in] */ BSTR port) = 0;
         
-        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ReadShort( 
-            /* [retval][out] */ SHORT *pVal) = 0;
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Beep( 
+            /* [in] */ SHORT times) = 0;
         
-        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ReadData( 
-            /* [retval][out] */ BSTR *data) = 0;
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReadCard( 
+            /* [retval][out] */ BSTR *pVal) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReadName( 
+            /* [retval][out] */ BSTR *pVal) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CloseDevice( 
+            /* [in] */ SHORT device) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_name( 
+            /* [retval][out] */ BSTR *pVal) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_name( 
+            /* [in] */ BSTR newVal) = 0;
         
     };
     
@@ -338,17 +350,33 @@ EXTERN_C const IID IID_IFlashNess;
             /* [out] */ EXCEPINFO *pExcepInfo,
             /* [out] */ UINT *puArgErr);
         
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *WriteData )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *InitDevice )( 
             IFlashNess * This,
-            /* [in] */ BSTR bstrPath);
+            /* [in] */ BSTR port);
         
-        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ReadShort )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Beep )( 
             IFlashNess * This,
-            /* [retval][out] */ SHORT *pVal);
+            /* [in] */ SHORT times);
         
-        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ReadData )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ReadCard )( 
             IFlashNess * This,
-            /* [retval][out] */ BSTR *data);
+            /* [retval][out] */ BSTR *pVal);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ReadName )( 
+            IFlashNess * This,
+            /* [retval][out] */ BSTR *pVal);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *CloseDevice )( 
+            IFlashNess * This,
+            /* [in] */ SHORT device);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_name )( 
+            IFlashNess * This,
+            /* [retval][out] */ BSTR *pVal);
+        
+        /* [id][propput] */ HRESULT ( STDMETHODCALLTYPE *put_name )( 
+            IFlashNess * This,
+            /* [in] */ BSTR newVal);
         
         END_INTERFACE
     } IFlashNessVtbl;
@@ -386,14 +414,26 @@ EXTERN_C const IID IID_IFlashNess;
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
 
-#define IFlashNess_WriteData(This,bstrPath)	\
-    ( (This)->lpVtbl -> WriteData(This,bstrPath) ) 
+#define IFlashNess_InitDevice(This,port)	\
+    ( (This)->lpVtbl -> InitDevice(This,port) ) 
 
-#define IFlashNess_get_ReadShort(This,pVal)	\
-    ( (This)->lpVtbl -> get_ReadShort(This,pVal) ) 
+#define IFlashNess_Beep(This,times)	\
+    ( (This)->lpVtbl -> Beep(This,times) ) 
 
-#define IFlashNess_get_ReadData(This,data)	\
-    ( (This)->lpVtbl -> get_ReadData(This,data) ) 
+#define IFlashNess_ReadCard(This,pVal)	\
+    ( (This)->lpVtbl -> ReadCard(This,pVal) ) 
+
+#define IFlashNess_ReadName(This,pVal)	\
+    ( (This)->lpVtbl -> ReadName(This,pVal) ) 
+
+#define IFlashNess_CloseDevice(This,device)	\
+    ( (This)->lpVtbl -> CloseDevice(This,device) ) 
+
+#define IFlashNess_get_name(This,pVal)	\
+    ( (This)->lpVtbl -> get_name(This,pVal) ) 
+
+#define IFlashNess_put_name(This,newVal)	\
+    ( (This)->lpVtbl -> put_name(This,newVal) ) 
 
 #endif /* COBJMACROS */
 

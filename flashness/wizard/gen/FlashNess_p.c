@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Sun May 19 21:58:56 2019
+/* at Tue May 21 01:15:42 2019
  */
 /* Compiler settings for FlashNess.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -49,8 +49,8 @@
 
 #include "FlashNess_i.h"
 
-#define TYPE_FORMAT_STRING_SIZE   1083                              
-#define PROC_FORMAT_STRING_SIZE   283                               
+#define TYPE_FORMAT_STRING_SIZE   1079                              
+#define PROC_FORMAT_STRING_SIZE   427                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   2            
@@ -116,7 +116,7 @@ static const FlashNess_MIDL_PROC_FORMAT_STRING FlashNess__MIDL_ProcFormatString 
         0,
         {
 
-	/* Procedure WriteData */
+	/* Procedure InitDevice */
 
 
 	/* Procedure Attach */
@@ -136,7 +136,7 @@ static const FlashNess_MIDL_PROC_FORMAT_STRING FlashNess__MIDL_ProcFormatString 
 /* 20 */	NdrFcShort( 0x1 ),	/* 1 */
 /* 22 */	NdrFcShort( 0x0 ),	/* 0 */
 
-	/* Parameter bstrPath */
+	/* Parameter port */
 
 
 	/* Parameter bstrPath */
@@ -299,15 +299,15 @@ static const FlashNess_MIDL_PROC_FORMAT_STRING FlashNess__MIDL_ProcFormatString 
 /* 208 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure get_ReadShort */
+	/* Procedure Beep */
 
 /* 210 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
 /* 212 */	NdrFcLong( 0x0 ),	/* 0 */
 /* 216 */	NdrFcShort( 0x8 ),	/* 8 */
 /* 218 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
-/* 220 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 222 */	NdrFcShort( 0x22 ),	/* 34 */
+/* 220 */	NdrFcShort( 0x6 ),	/* 6 */
+/* 222 */	NdrFcShort( 0x8 ),	/* 8 */
 /* 224 */	0x44,		/* Oi2 Flags:  has return, has ext, */
 			0x2,		/* 2 */
 /* 226 */	0x8,		/* 8 */
@@ -316,9 +316,9 @@ static const FlashNess_MIDL_PROC_FORMAT_STRING FlashNess__MIDL_ProcFormatString 
 /* 230 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 232 */	NdrFcShort( 0x0 ),	/* 0 */
 
-	/* Parameter pVal */
+	/* Parameter times */
 
-/* 234 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
+/* 234 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
 /* 236 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
 /* 238 */	0x6,		/* FC_SHORT */
 			0x0,		/* 0 */
@@ -330,7 +330,7 @@ static const FlashNess_MIDL_PROC_FORMAT_STRING FlashNess__MIDL_ProcFormatString 
 /* 244 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure get_ReadData */
+	/* Procedure ReadCard */
 
 /* 246 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
@@ -347,17 +347,138 @@ static const FlashNess_MIDL_PROC_FORMAT_STRING FlashNess__MIDL_ProcFormatString 
 /* 266 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 268 */	NdrFcShort( 0x0 ),	/* 0 */
 
-	/* Parameter data */
+	/* Parameter pVal */
 
 /* 270 */	NdrFcShort( 0x2113 ),	/* Flags:  must size, must free, out, simple ref, srv alloc size=8 */
 /* 272 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
-/* 274 */	NdrFcShort( 0x430 ),	/* Type Offset=1072 */
+/* 274 */	NdrFcShort( 0x42c ),	/* Type Offset=1068 */
 
 	/* Return value */
 
 /* 276 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
 /* 278 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
 /* 280 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure ReadName */
+
+/* 282 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 284 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 288 */	NdrFcShort( 0xa ),	/* 10 */
+/* 290 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 292 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 294 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 296 */	0x45,		/* Oi2 Flags:  srv must size, has return, has ext, */
+			0x2,		/* 2 */
+/* 298 */	0x8,		/* 8 */
+			0x3,		/* Ext Flags:  new corr desc, clt corr check, */
+/* 300 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 302 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 304 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter pVal */
+
+/* 306 */	NdrFcShort( 0x2113 ),	/* Flags:  must size, must free, out, simple ref, srv alloc size=8 */
+/* 308 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 310 */	NdrFcShort( 0x42c ),	/* Type Offset=1068 */
+
+	/* Return value */
+
+/* 312 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 314 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 316 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure CloseDevice */
+
+/* 318 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 320 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 324 */	NdrFcShort( 0xb ),	/* 11 */
+/* 326 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 328 */	NdrFcShort( 0x6 ),	/* 6 */
+/* 330 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 332 */	0x44,		/* Oi2 Flags:  has return, has ext, */
+			0x2,		/* 2 */
+/* 334 */	0x8,		/* 8 */
+			0x1,		/* Ext Flags:  new corr desc, */
+/* 336 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 338 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 340 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter device */
+
+/* 342 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 344 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 346 */	0x6,		/* FC_SHORT */
+			0x0,		/* 0 */
+
+	/* Return value */
+
+/* 348 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 350 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 352 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure get_name */
+
+/* 354 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 356 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 360 */	NdrFcShort( 0xc ),	/* 12 */
+/* 362 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 364 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 366 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 368 */	0x45,		/* Oi2 Flags:  srv must size, has return, has ext, */
+			0x2,		/* 2 */
+/* 370 */	0x8,		/* 8 */
+			0x3,		/* Ext Flags:  new corr desc, clt corr check, */
+/* 372 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 374 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 376 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter pVal */
+
+/* 378 */	NdrFcShort( 0x2113 ),	/* Flags:  must size, must free, out, simple ref, srv alloc size=8 */
+/* 380 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 382 */	NdrFcShort( 0x42c ),	/* Type Offset=1068 */
+
+	/* Return value */
+
+/* 384 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 386 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 388 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure put_name */
+
+/* 390 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 392 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 396 */	NdrFcShort( 0xd ),	/* 13 */
+/* 398 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 400 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 402 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 404 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x2,		/* 2 */
+/* 406 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 408 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 410 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 412 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter newVal */
+
+/* 414 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 416 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 418 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
+
+	/* Return value */
+
+/* 420 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 422 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 424 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0
@@ -1087,18 +1208,14 @@ static const FlashNess_MIDL_TYPE_FORMAT_STRING FlashNess__MIDL_TypeFormatString 
 /* 1060 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 1062 */	NdrFcShort( 0xfc04 ),	/* Offset= -1020 (42) */
 /* 1064 */	
-			0x11, 0xc,	/* FC_RP [alloced_on_stack] [simple_pointer] */
-/* 1066 */	0x6,		/* FC_SHORT */
-			0x5c,		/* FC_PAD */
-/* 1068 */	
 			0x11, 0x4,	/* FC_RP [alloced_on_stack] */
-/* 1070 */	NdrFcShort( 0x2 ),	/* Offset= 2 (1072) */
-/* 1072 */	0xb4,		/* FC_USER_MARSHAL */
+/* 1066 */	NdrFcShort( 0x2 ),	/* Offset= 2 (1068) */
+/* 1068 */	0xb4,		/* FC_USER_MARSHAL */
 			0x83,		/* 131 */
+/* 1070 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 1072 */	NdrFcShort( 0x4 ),	/* 4 */
 /* 1074 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 1076 */	NdrFcShort( 0x4 ),	/* 4 */
-/* 1078 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 1080 */	NdrFcShort( 0xfe12 ),	/* Offset= -494 (586) */
+/* 1076 */	NdrFcShort( 0xfe16 ),	/* Offset= -490 (586) */
 
 			0x0
         }
@@ -1227,7 +1344,11 @@ static const unsigned short IFlashNess_FormatStringOffsetTable[] =
     (unsigned short) -1,
     0,
     210,
-    246
+    246,
+    282,
+    318,
+    354,
+    390
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IFlashNess_ProxyInfo =
@@ -1251,7 +1372,7 @@ static const MIDL_SERVER_INFO IFlashNess_ServerInfo =
     0,
     0,
     0};
-CINTERFACE_PROXY_VTABLE(10) _IFlashNessProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(14) _IFlashNessProxyVtbl = 
 {
     &IFlashNess_ProxyInfo,
     &IID_IFlashNess,
@@ -1262,9 +1383,13 @@ CINTERFACE_PROXY_VTABLE(10) _IFlashNessProxyVtbl =
     0 /* IDispatch::GetTypeInfo */ ,
     0 /* IDispatch::GetIDsOfNames */ ,
     0 /* IDispatch_Invoke_Proxy */ ,
-    (void *) (INT_PTR) -1 /* IFlashNess::WriteData */ ,
-    (void *) (INT_PTR) -1 /* IFlashNess::get_ReadShort */ ,
-    (void *) (INT_PTR) -1 /* IFlashNess::get_ReadData */
+    (void *) (INT_PTR) -1 /* IFlashNess::InitDevice */ ,
+    (void *) (INT_PTR) -1 /* IFlashNess::Beep */ ,
+    (void *) (INT_PTR) -1 /* IFlashNess::ReadCard */ ,
+    (void *) (INT_PTR) -1 /* IFlashNess::ReadName */ ,
+    (void *) (INT_PTR) -1 /* IFlashNess::CloseDevice */ ,
+    (void *) (INT_PTR) -1 /* IFlashNess::get_name */ ,
+    (void *) (INT_PTR) -1 /* IFlashNess::put_name */
 };
 
 
@@ -1276,6 +1401,10 @@ static const PRPC_STUB_FUNCTION IFlashNess_table[] =
     STUB_FORWARDING_FUNCTION,
     NdrStubCall2,
     NdrStubCall2,
+    NdrStubCall2,
+    NdrStubCall2,
+    NdrStubCall2,
+    NdrStubCall2,
     NdrStubCall2
 };
 
@@ -1283,7 +1412,7 @@ CInterfaceStubVtbl _IFlashNessStubVtbl =
 {
     &IID_IFlashNess,
     &IFlashNess_ServerInfo,
-    10,
+    14,
     &IFlashNess_table[-3],
     CStdStubBuffer_DELEGATING_METHODS
 };

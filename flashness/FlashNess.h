@@ -123,7 +123,6 @@ END_MSG_MAP()
     }
 
     LRESULT OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/) {
-        ::MessageBox(NULL, L"test", L"FlashNess", NULL);
         RECT rc;
         GetWindowRect(&rc);
         rc.right -= rc.left;
@@ -136,13 +135,12 @@ END_MSG_MAP()
     }
 
     STDMETHOD(SetObjectRects)(LPCRECT prcPos,LPCRECT prcClip) {
-        return S_OK;
         IOleInPlaceObjectWindowlessImpl<CFlashNess>::SetObjectRects(prcPos, prcClip);
         int cx, cy;
         cx = prcPos->right - prcPos->left;
         cy = prcPos->bottom - prcPos->top;
         ::SetWindowPos(m_ctlStatic.m_hWnd, NULL, 0,
-            0, 0, 0, SWP_NOZORDER | SWP_NOACTIVATE);
+            0, cx, cy, SWP_NOZORDER | SWP_NOACTIVATE);
         return S_OK;
     }
 
@@ -186,19 +184,43 @@ END_MSG_MAP()
     {
     }
 
-    STDMETHOD(WriteData)(BSTR bstrPath) {
-        if (bstrPath == nullptr) return S_FALSE;
-        ATL::CComBSTR bstr_val = bstrPath;
-        data_ = bstr_val;
+
+	std::wstring data_;
+
+    STDMETHOD(InitDevice)(BSTR port) {
+        ::MessageBox(NULL, L"InitDevice", L"NPAPI", NULL);
         return S_OK;
     }
 
-    STDMETHOD(get_ReadShort)(SHORT* pVal){
-        *pVal = 1;
+    STDMETHOD(Beep)(SHORT times) {
+        ::MessageBox(NULL, L"Beep", L"NPAPI", NULL);
+        return S_OK;
+    }
+
+    STDMETHOD(ReadCard)(BSTR* pVal) {
+        ::MessageBox(NULL, L"ReadCard", L"NPAPI", NULL);
+        if (!pVal) return S_FALSE;
+        std::string temp = "01020200002222222200330445560";
+        CComBSTR value(temp.c_str());
+        *pVal = value.Detach();
+        return S_OK;
+    }
+
+    STDMETHOD(ReadName)(BSTR* pVal) {
+        std::string temp = CT2AEX<>(data_.c_str());
+        CComBSTR value(temp.c_str());
+        *pVal = value.Detach();
+        return S_OK;
+    }
+
+    STDMETHOD(put_name)(BSTR data){
+        if (data == nullptr) return S_FALSE;
+        ATL::CComBSTR bstr_val = data;
+        data_ = bstr_val;
         return S_OK;
     } 
 
-    STDMETHOD(get_ReadData)(BSTR* pVal) {
+    STDMETHOD(get_name)(BSTR* pVal) {
         if (!pVal) return S_FALSE;
         std::string temp = CT2AEX<>(data_.c_str());
         CComBSTR value(temp.c_str());
@@ -206,7 +228,8 @@ END_MSG_MAP()
         return S_OK;
     }
 
-    std::wstring data_;
+
+	STDMETHOD(CloseDevice)(SHORT device);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(FlashNess), CFlashNess)
