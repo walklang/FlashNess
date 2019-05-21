@@ -33,11 +33,14 @@ interface IComponentRegistrar : IDispatch
 	pointer_default(unique)
 ]
 interface IFlashNess : IDispatch{
-	[id(1)]	HRESULT InitDevice([in] BSTR port);
-    [id(2)] HRESULT Beep([in] SHORT times);
-    [id(3)] HRESULT ReadCard([out, retval] BSTR* pVal);
-    [id(4)] HRESULT ReadName([out, retval] BSTR* pVal);
-	[id(5)] HRESULT CloseDevice([in] SHORT device);
+	[id(1)]	HRESULT InitDevice([in] BSTR port, [out, retval] SHORT* device);
+    [id(2)] HRESULT CloseDevice([in] SHORT device);
+    [id(3)] HRESULT Beep([in] SHORT times);
+    [id(4)] HRESULT ReadCard([out, retval] BSTR* pVal);
+
+    [id(200)] HRESULT WriteData([in] BSTR data);
+    [id(201)] HRESULT ReadData([out, retval] BSTR* pVal);
+	
     [propget, id(301)] HRESULT name([out, retval] BSTR* pVal);
     [propput, id(301)] HRESULT name([in] BSTR newVal);
 };

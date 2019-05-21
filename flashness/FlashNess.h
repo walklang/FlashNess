@@ -1,6 +1,6 @@
 // FlashNess.h : CFlashNess 的声明
 #pragma once
-#include "resource.h"       // 主符号
+#include "rc\resource.h"       // 主符号
 #include <atlctl.h>
 #include "FlashNess_i.h"
 #include "wizard\_IFlashNessEvents_CP.h"
@@ -58,7 +58,7 @@ DECLARE_OLEMISC_STATUS(OLEMISC_RECOMPOSEONRESIZE |
     OLEMISC_SETCLIENTSITEFIRST
 )
 
-DECLARE_REGISTRY_RESOURCEID(IDR_FlashNess)
+DECLARE_REGISTRY_RESOURCEID(IDR_FLASHNESS)
 
 
 BEGIN_COM_MAP(CFlashNess)
@@ -90,6 +90,7 @@ END_COM_MAP()
 BEGIN_PROP_MAP(CFlashNess)
     PROP_DATA_ENTRY("_cx", m_sizeExtent.cx, VT_UI4)
     PROP_DATA_ENTRY("_cy", m_sizeExtent.cy, VT_UI4)
+    PROP_DATA_ENTRY("name", name_, VT_BSTR)
     // 示例项
     // PROP_ENTRY_TYPE("属性名", dispid, clsid, vtType)
     // PROP_PAGE(CLSID_StockColorPage)
@@ -135,6 +136,7 @@ END_MSG_MAP()
     }
 
     STDMETHOD(SetObjectRects)(LPCRECT prcPos,LPCRECT prcClip) {
+        return S_OK;
         IOleInPlaceObjectWindowlessImpl<CFlashNess>::SetObjectRects(prcPos, prcClip);
         int cx, cy;
         cx = prcPos->right - prcPos->left;
@@ -185,51 +187,20 @@ END_MSG_MAP()
     }
 
 
+    CComBSTR name_;
 	std::wstring data_;
 
-    STDMETHOD(InitDevice)(BSTR port) {
-        ::MessageBox(NULL, L"InitDevice", L"NPAPI", NULL);
-        return S_OK;
-    }
+    STDMETHOD(InitDevice)(BSTR port, SHORT* device);
+    STDMETHOD(CloseDevice)(SHORT device);
 
-    STDMETHOD(Beep)(SHORT times) {
-        ::MessageBox(NULL, L"Beep", L"NPAPI", NULL);
-        return S_OK;
-    }
+    STDMETHOD(Beep)(SHORT times);
+    STDMETHOD(ReadCard)(BSTR* pVal);
 
-    STDMETHOD(ReadCard)(BSTR* pVal) {
-        ::MessageBox(NULL, L"ReadCard", L"NPAPI", NULL);
-        if (!pVal) return S_FALSE;
-        std::string temp = "01020200002222222200330445560";
-        CComBSTR value(temp.c_str());
-        *pVal = value.Detach();
-        return S_OK;
-    }
+    STDMETHOD(WriteData)(BSTR data);
+    STDMETHOD(ReadData)(BSTR* pVal);
 
-    STDMETHOD(ReadName)(BSTR* pVal) {
-        std::string temp = CT2AEX<>(data_.c_str());
-        CComBSTR value(temp.c_str());
-        *pVal = value.Detach();
-        return S_OK;
-    }
-
-    STDMETHOD(put_name)(BSTR data){
-        if (data == nullptr) return S_FALSE;
-        ATL::CComBSTR bstr_val = data;
-        data_ = bstr_val;
-        return S_OK;
-    } 
-
-    STDMETHOD(get_name)(BSTR* pVal) {
-        if (!pVal) return S_FALSE;
-        std::string temp = CT2AEX<>(data_.c_str());
-        CComBSTR value(temp.c_str());
-        *pVal = value.Detach();
-        return S_OK;
-    }
-
-
-	STDMETHOD(CloseDevice)(SHORT device);
+    STDMETHOD(put_name)(BSTR data);
+    STDMETHOD(get_name)(BSTR* pVal);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(FlashNess), CFlashNess)

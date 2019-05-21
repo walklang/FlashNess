@@ -85,9 +85,6 @@
     <ClCompile Include="..\npplugin\PluginObjImpl.cpp">
       <Filter>npplugin</Filter>
     </ClCompile>
-    <ClCompile Include="..\npplugin\npPlugin.cpp">
-      <Filter>mozilla</Filter>
-    </ClCompile>
     <ClCompile Include="..\regs\AxRegistration.cpp">
       <Filter>regs</Filter>
     </ClCompile>
@@ -111,6 +108,9 @@
     </ClCompile>
     <ClCompile Include="FlashNess.cpp">
       <Filter>flashness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\npplugin\npPlugin.cpp">
+      <Filter>npplugin</Filter>
     </ClCompile>
     <ClCompile Include="FlashNessLib.cpp">
       <Filter>flashness</Filter>
@@ -148,9 +148,6 @@
       <Filter>npapi</Filter>
     </ClInclude>
     <ClInclude Include="..\npapi\sdk\samples\include\npplat.h">
-      <Filter>npapi</Filter>
-    </ClInclude>
-    <ClInclude Include="..\npapi\sdk\samples\include\npPlugin.h">
       <Filter>npapi</Filter>
     </ClInclude>
     <ClInclude Include="..\npplugin\AxHost.h">
@@ -216,6 +213,9 @@
     <ClInclude Include="wizard\_IFlashNessEvents_CP.h">
       <Filter>wizard</Filter>
     </ClInclude>
+    <ClInclude Include="..\npapi\sdk\samples\include\npPlugin.h">
+      <Filter>npapi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="wizard\rc\FlashNess.rc">
@@ -226,13 +226,13 @@
     <None Include="wizard\FlashNess.def">
       <Filter>wizard</Filter>
     </None>
-    <None Include="wizard\rc\FlashNessPlugin.rgs">
-      <Filter>wizard\rc</Filter>
-    </None>
     <None Include="wizard\rc\FlashNess.rgs">
       <Filter>wizard\rc</Filter>
     </None>
     <None Include="wizard\rc\FlashNess.bmp">
+      <Filter>wizard\rc</Filter>
+    </None>
+    <None Include="wizard\rc\FlashNessLib.rgs">
       <Filter>wizard\rc</Filter>
     </None>
   </ItemGroup>

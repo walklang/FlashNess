@@ -218,7 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="wizard\rc\FlashNess.bmp" />
-    <None Include="wizard\rc\FlashNessPlugin.rgs" />
+    <None Include="wizard\rc\FlashNessLib.rgs" />
     <None Include="wizard\rc\FlashNess.rgs" />
     <None Include="wizard\FlashNess.def" />
   </ItemGroup>

@@ -29,13 +29,13 @@
 #endif
 
 #include "resource.h"
-#include <atlbase.h>
-#include <atlcom.h>
-#include <atlctl.h>
 
 #define WIN32_LEAN_AND_MEAN             // 从 Windows 头文件中排除极少使用的信息
 #include <windows.h>					// Windows 头文件
 
+#include <atlbase.h>
+#include <atlcom.h>
+#include <atlctl.h>
 using namespace ATL;
 
 #include <algorithm>

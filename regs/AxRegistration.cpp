@@ -23,12 +23,12 @@ CAxRegistration::CAxRegistration() {
     strPath += L"\\npFlashNess.dll";
 
     CAxRegistryWorker::MozillaPlugin mozillaPlugin;
-
-    FlashNessPlugin.clsid = L"{6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB}";
-    mozillaPlugin.listName = L"@ant.sh/npFlashNess";
+    mozillaPlugin.listName = L"@suhao.org/npFlashNess";
     mozillaPlugin.mimeName = L"application/npFlashNess";
     mozillaPlugin.productName = L"npFlashNess";
     mozillaPlugin.pluginPath = strPath;
+
+    FlashNessPlugin.clsid = L"{6DD1301A-DCB4-43E4-9447-B1C7EA0ABACB}";
     FlashNessPlugin.MozillaPlugins.push_back(mozillaPlugin);
 }
 

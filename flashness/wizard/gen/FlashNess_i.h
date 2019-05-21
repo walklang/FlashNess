@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0555 */
-/* at Tue May 21 01:15:42 2019
+/* at Tue May 21 16:21:36 2019
  */
 /* Compiler settings for FlashNess.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
@@ -281,7 +281,11 @@ EXTERN_C const IID IID_IFlashNess;
     {
     public:
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE InitDevice( 
-            /* [in] */ BSTR port) = 0;
+            /* [in] */ BSTR port,
+            /* [retval][out] */ SHORT *device) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CloseDevice( 
+            /* [in] */ SHORT device) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Beep( 
             /* [in] */ SHORT times) = 0;
@@ -289,11 +293,11 @@ EXTERN_C const IID IID_IFlashNess;
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReadCard( 
             /* [retval][out] */ BSTR *pVal) = 0;
         
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReadName( 
-            /* [retval][out] */ BSTR *pVal) = 0;
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE WriteData( 
+            /* [in] */ BSTR data) = 0;
         
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE CloseDevice( 
-            /* [in] */ SHORT device) = 0;
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE ReadData( 
+            /* [retval][out] */ BSTR *pVal) = 0;
         
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_name( 
             /* [retval][out] */ BSTR *pVal) = 0;
@@ -352,7 +356,12 @@ EXTERN_C const IID IID_IFlashNess;
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *InitDevice )( 
             IFlashNess * This,
-            /* [in] */ BSTR port);
+            /* [in] */ BSTR port,
+            /* [retval][out] */ SHORT *device);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *CloseDevice )( 
+            IFlashNess * This,
+            /* [in] */ SHORT device);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *Beep )( 
             IFlashNess * This,
@@ -362,13 +371,13 @@ EXTERN_C const IID IID_IFlashNess;
             IFlashNess * This,
             /* [retval][out] */ BSTR *pVal);
         
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ReadName )( 
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *WriteData )( 
+            IFlashNess * This,
+            /* [in] */ BSTR data);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *ReadData )( 
             IFlashNess * This,
             /* [retval][out] */ BSTR *pVal);
-        
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *CloseDevice )( 
-            IFlashNess * This,
-            /* [in] */ SHORT device);
         
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_name )( 
             IFlashNess * This,
@@ -414,8 +423,11 @@ EXTERN_C const IID IID_IFlashNess;
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
 
-#define IFlashNess_InitDevice(This,port)	\
-    ( (This)->lpVtbl -> InitDevice(This,port) ) 
+#define IFlashNess_InitDevice(This,port,device)	\
+    ( (This)->lpVtbl -> InitDevice(This,port,device) ) 
+
+#define IFlashNess_CloseDevice(This,device)	\
+    ( (This)->lpVtbl -> CloseDevice(This,device) ) 
 
 #define IFlashNess_Beep(This,times)	\
     ( (This)->lpVtbl -> Beep(This,times) ) 
@@ -423,11 +435,11 @@ EXTERN_C const IID IID_IFlashNess;
 #define IFlashNess_ReadCard(This,pVal)	\
     ( (This)->lpVtbl -> ReadCard(This,pVal) ) 
 
-#define IFlashNess_ReadName(This,pVal)	\
-    ( (This)->lpVtbl -> ReadName(This,pVal) ) 
+#define IFlashNess_WriteData(This,data)	\
+    ( (This)->lpVtbl -> WriteData(This,data) ) 
 
-#define IFlashNess_CloseDevice(This,device)	\
-    ( (This)->lpVtbl -> CloseDevice(This,device) ) 
+#define IFlashNess_ReadData(This,pVal)	\
+    ( (This)->lpVtbl -> ReadData(This,pVal) ) 
 
 #define IFlashNess_get_name(This,pVal)	\
     ( (This)->lpVtbl -> get_name(This,pVal) ) 
