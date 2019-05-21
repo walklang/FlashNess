@@ -5,6 +5,7 @@
 #include "FlashNess_i.h"
 #include "wizard\_IFlashNessEvents_CP.h"
 #include <string>
+#include "third_party/dynamic_library/dynamic_library.h"
 
 #if defined(_WIN32_WCE) && !defined(_CE_DCOM) && !defined(_CE_ALLOW_SINGLE_THREADED_OBJECTS_IN_MTA)
 #error "Windows CE 平台(如不提供完全 DCOM 支持的 Windows Mobile 平台)上无法正确支持单线程 COM 对象。定义 _CE_ALLOW_SINGLE_THREADED_OBJECTS_IN_MTA 可强制 ATL 支持创建单线程 COM 对象实现并允许使用其单线程 COM 对象实现。rgs 文件中的线程模型已被设置为“Free”，原因是该模型是非 DCOM Windows CE 平台支持的唯一线程模型。"
@@ -43,11 +44,7 @@ public:
 #pragma warning(disable: 4355) // “this”: 用于基成员初始值设定项列表
 
 
-    CFlashNess()
-        : m_ctlStatic(_T("Static"), this, 1) {
-        m_bWindowOnly = TRUE;
-        m_bRequiresSave = FALSE;
-    }
+    CFlashNess();
 
 #pragma warning(pop)
 
@@ -123,17 +120,7 @@ END_MSG_MAP()
         return lRes;
     }
 
-    LRESULT OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/) {
-        RECT rc;
-        GetWindowRect(&rc);
-        rc.right -= rc.left;
-        rc.bottom -= rc.top;
-        rc.top = rc.left = 0;
-        m_ctlStatic.Create(m_hWnd, rc);
-        m_ctlStatic.ShowWindow(SW_HIDE);
-        ::ShowWindow(m_hWnd, SW_HIDE);
-        return 0;
-    }
+    LRESULT OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
 
     STDMETHOD(SetObjectRects)(LPCRECT prcPos,LPCRECT prcClip) {
         return S_OK;
@@ -189,6 +176,7 @@ END_MSG_MAP()
 
     CComBSTR name_;
 	std::wstring data_;
+    utils::DynamicLibrary library_;
 
     STDMETHOD(InitDevice)(BSTR port, SHORT* device);
     STDMETHOD(CloseDevice)(SHORT device);

@@ -60,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;_MERGE_PROXYSTUB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)mozilla\;$(SolutionDir)npapi\base\public\;$(SolutionDir)npapi\sdk\samples\common\;$(SolutionDir)npapi\sdk\samples\include\;$(SolutionDir)npplugin\;$(SolutionDir)flashness\;$(SolutionDir)flashness\wizard\;$(SolutionDir)flashness\wizard\gen\;$(SolutionDir)flashness\wizard\rc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)mozilla\;$(SolutionDir)npapi\base\public\;$(SolutionDir)npapi\sdk\samples\common\;$(SolutionDir)npapi\sdk\samples\include\;$(SolutionDir)npplugin\;$(SolutionDir)flashness\;$(SolutionDir)flashness\wizard\;$(SolutionDir)flashness\wizard\gen\;$(SolutionDir)flashness\wizard\rc\;$(SolutionDir)third_party\basictypes\;$(SolutionDir)third_party\dynamic_library\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -94,7 +94,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;_MERGE_PROXYSTUB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)mozilla\;$(SolutionDir)npapi\base\public\;$(SolutionDir)npapi\sdk\samples\common\;$(SolutionDir)npapi\sdk\samples\include\;$(SolutionDir)npplugin\;$(SolutionDir)flashness\;$(SolutionDir)flashness\wizard\;$(SolutionDir)flashness\wizard\gen\;$(SolutionDir)flashness\wizard\rc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)mozilla\;$(SolutionDir)npapi\base\public\;$(SolutionDir)npapi\sdk\samples\common\;$(SolutionDir)npapi\sdk\samples\include\;$(SolutionDir)npplugin\;$(SolutionDir)flashness\;$(SolutionDir)flashness\wizard\;$(SolutionDir)flashness\wizard\gen\;$(SolutionDir)flashness\wizard\rc\;$(SolutionDir)third_party\basictypes\;$(SolutionDir)third_party\dynamic_library\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -203,6 +203,10 @@
     <ClInclude Include="..\npplugin\variants.h" />
     <ClInclude Include="..\regs\AxRegistration.h" />
     <ClInclude Include="..\regs\PerUserRegistration.h" />
+    <ClInclude Include="..\third_party\basictypes\basictypes.h" />
+    <ClInclude Include="..\third_party\basictypes\compiler.h" />
+    <ClInclude Include="..\third_party\dynamic_library\dynamic_library.h" />
+    <ClInclude Include="..\third_party\dynamic_library\dynamic_library_interface.h" />
     <ClInclude Include="wizard\rc\resource.h" />
     <ClInclude Include="wizard\compreg.h" />
     <ClInclude Include="wizard\dllmain.h" />

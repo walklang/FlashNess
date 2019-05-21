@@ -29,6 +29,9 @@
       <UniqueIdentifier>{cdb36df6-cd8b-4561-9c92-ddd9ee17ed00}</UniqueIdentifier>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{da32137b-034c-47a5-a071-99e573a6ba9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\mozilla\ControlEventSink.cpp">
@@ -215,6 +218,18 @@
     </ClInclude>
     <ClInclude Include="..\npapi\sdk\samples\include\npPlugin.h">
       <Filter>npapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\basictypes\basictypes.h">
+      <Filter>third_party</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\basictypes\compiler.h">
+      <Filter>third_party</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\dynamic_library\dynamic_library.h">
+      <Filter>third_party</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\dynamic_library\dynamic_library_interface.h">
+      <Filter>third_party</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

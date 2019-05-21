@@ -5,8 +5,58 @@
 
 // CFlashNess
 
+#define WaterCard L"water_card.dll"
+
+extern HMODULE _Instance;
+
+inline CFlashNess::CFlashNess()
+    : m_ctlStatic(_T("Static"), this, 1)
+    , library_(WaterCard) {
+    m_bWindowOnly = TRUE;
+    m_bRequiresSave = FALSE;
+}
+
+LRESULT CFlashNess::OnCreate(UINT, WPARAM, LPARAM, BOOL&) {
+    RECT rc;
+    GetWindowRect(&rc);
+    rc.right -= rc.left;
+    rc.bottom -= rc.top;
+    rc.top = rc.left = 0;
+    m_ctlStatic.Create(m_hWnd, rc);
+    m_ctlStatic.ShowWindow(SW_HIDE);
+    ::ShowWindow(m_hWnd, SW_HIDE);
+    return 0;
+}
+
 STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
-    if (device == nullptr) return S_FALSE;
+    if (device == nullptr || port == nullptr) return S_FALSE;
+
+    ::MessageBox(NULL, L"debug", L"NPAPI", NULL);
+
+    if (!library_.is_valid()) {
+        *device = 9001;
+
+        TCHAR tszModule[MAX_PATH + 1] = { 0 };
+        ::GetModuleFileName(_Instance, tszModule, MAX_PATH);
+        std::wstring strPath = tszModule;
+        std::wstring::size_type npos = strPath.rfind('\\');
+        if( std::wstring::npos == npos ) return S_FALSE;
+        strPath.erase(npos);
+        strPath += L"\\";
+        strPath += WaterCard;
+        library_.Reset(internal::LoadLibrary(strPath, nullptr));
+        if (!library_.is_valid()) return S_FALSE;
+    }
+
+    std::wstring ports = CComBSTR(port).Detach();
+
+    auto initcom = library_.GetFunctionPointer<void, wchar_t*>("initcom");
+    if (initcom == nullptr) {
+        *device = 9002;
+        return S_FALSE;
+    }
+
+    initcom(L"1");
     *device = 100;
     return S_OK;
 }
