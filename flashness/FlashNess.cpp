@@ -1,7 +1,8 @@
 // FlashNess.cpp : CFlashNess µÄÊµÏÖ
 #include "stdafx.h"
 #include "FlashNess.h"
-
+#include <iostream>
+#include <memory>
 
 // CFlashNess
 
@@ -48,15 +49,30 @@ STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
         if (!library_.is_valid()) return S_FALSE;
     }
 
-    std::wstring ports = CComBSTR(port).Detach();
 
-    auto initcom = library_.GetFunctionPointer<void, wchar_t*>("initcom");
+
+    auto initcom = library_.GetFunctionPointer<void, char*>("initcom");
     if (initcom == nullptr) {
         *device = 9002;
         return S_FALSE;
     }
 
-    initcom(L"1");
+    std::string multibyte = CT2CAEX<>(port);
+    std::unique_ptr<char[]> p(new char[multibyte.length() + 1]);
+    std::memset(p.get(), 0, multibyte.length() + 1);
+    strncpy_s(p.get(), multibyte.length() + 1, multibyte.c_str(), multibyte.length());
+
+    initcom(p.get());
+
+    auto get_time = library_.GetFunctionPointer<char*>("GetTime");
+    if (get_time == nullptr) {
+        *device = 9003;
+        return S_FALSE;
+    }
+
+    get_time();
+
+    
     *device = 100;
     return S_OK;
 }
@@ -66,6 +82,14 @@ STDMETHODIMP CFlashNess::CloseDevice(SHORT device) {
 }
 
 STDMETHODIMP CFlashNess::Beep(SHORT times) {
+    if (!library_.is_valid()) return S_FALSE;
+
+    auto beep = library_.GetFunctionPointer<void>("beep");
+    if (beep == nullptr) return S_FALSE;
+
+    for (; times > 0; --times) {
+        beep();
+    }
     return S_OK;
 }
 
