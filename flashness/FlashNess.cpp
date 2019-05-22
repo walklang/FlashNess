@@ -3,12 +3,25 @@
 #include "FlashNess.h"
 #include <iostream>
 #include <memory>
+#include <string>
 
 // CFlashNess
 
 #define WaterCard L"water_card.dll"
 
 extern HMODULE _Instance;
+
+std::wstring GetPath(const std::wstring& filename) {
+    TCHAR tszModule[MAX_PATH + 1] = { 0 };
+    ::GetModuleFileName(_Instance, tszModule, MAX_PATH);
+    std::wstring strPath = tszModule;
+    std::wstring::size_type npos = strPath.rfind('\\');
+    if (std::wstring::npos == npos) return filename;
+    strPath.erase(npos);
+    strPath += L"\\";
+    strPath += filename;
+    return strPath;
+}
 
 inline CFlashNess::CFlashNess()
     : m_ctlStatic(_T("Static"), this, 1)
@@ -36,16 +49,7 @@ STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
 
     if (!library_.is_valid()) {
         *device = 9001;
-
-        TCHAR tszModule[MAX_PATH + 1] = { 0 };
-        ::GetModuleFileName(_Instance, tszModule, MAX_PATH);
-        std::wstring strPath = tszModule;
-        std::wstring::size_type npos = strPath.rfind('\\');
-        if( std::wstring::npos == npos ) return S_FALSE;
-        strPath.erase(npos);
-        strPath += L"\\";
-        strPath += WaterCard;
-        library_.Reset(internal::LoadLibrary(strPath, nullptr));
+        library_.Reset(internal::LoadLibrary(GetPath(WaterCard), nullptr));
         if (!library_.is_valid()) return S_FALSE;
     }
 
@@ -70,7 +74,7 @@ STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
         return S_FALSE;
     }
 
-    get_time();
+    //get_time();
 
     
     *device = 100;
@@ -78,7 +82,7 @@ STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
 }
 
 STDMETHODIMP CFlashNess::CloseDevice(SHORT device) {
-	return S_OK;
+    return S_OK;
 }
 
 STDMETHODIMP CFlashNess::Beep(SHORT times) {
@@ -95,7 +99,18 @@ STDMETHODIMP CFlashNess::Beep(SHORT times) {
 
 STDMETHODIMP CFlashNess::ReadCard(BSTR* pVal) {
     if (!pVal) return S_FALSE;
-    std::string temp = "01020200002222222200330445560";
+
+    utils::DynamicLibrary library(GetPath(L"XXX.dll"));
+    if (!library.is_valid()) {
+        CComBSTR value(L"0");
+        *pVal = value.Detach();
+        return S_FALSE;
+    }
+
+    auto sum = library.GetFunctionPointer<int>("fnxxx");    if (sum == nullptr) {        CComBSTR value(L"1");
+        *pVal = value.Detach();        return S_FALSE;    }
+
+    std::string temp = std::to_string(sum());
     CComBSTR value(temp.c_str());
     *pVal = value.Detach();
     return S_OK;
