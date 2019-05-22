@@ -49,9 +49,9 @@ STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
         if (!library_.is_valid()) return S_FALSE;
     }
 
-
-
-    auto initcom = library_.GetFunctionPointer<void, char*>("initcom");
+    //auto initcom = library_.GetFunctionPointer<void, char*>("initcom");
+    //auto initcom = library_.GetFunctionPointer<void, char*>(17);
+    auto initcom = library_.GetFunctionPointer<void, char*>(13);
     if (initcom == nullptr) {
         *device = 9002;
         return S_FALSE;
