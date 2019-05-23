@@ -189,6 +189,9 @@ END_MSG_MAP()
 
     STDMETHOD(put_name)(BSTR data);
     STDMETHOD(get_name)(BSTR* pVal);
+
+	STDMETHOD(GetModulePath)(BSTR* path);
+    STDMETHOD(CreateService)(BSTR path);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(FlashNess), CFlashNess)

@@ -44,6 +44,18 @@
 				var name = flash.name;
 				alert(name);
 			}
+			function GetModulePath() {
+				var flash = document.getElementById("FlashNess");
+				var path = flash.GetModulePath();
+				alert(path);
+			}
+			function CreateService() {
+				var flash = document.getElementById("FlashNess");
+				var path = flash.GetModulePath();
+				path += "reg.bat";
+				alert(path);
+				flash.CreateService(path);
+			}
 			
 			function isIE() { //ie?  
 				if (!!window.ActiveXObject || "ActiveXObject" in window)  
@@ -75,6 +87,8 @@
 	<p name="test">
 		<button onclick="ReadData()"> ReadData </button>
 		<button onclick="ReadName()"> ReadName </button>
+		<button onclick="GetModulePath()"> GetModulePath </button>
+		<button onclick="CreateService()"> CreateService </button>
 	</p>
 	<p name="card">
 		<button onclick="InitDevice()"> InitDevice </button>

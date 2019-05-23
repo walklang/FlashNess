@@ -38,6 +38,9 @@ interface IFlashNess : IDispatch{
     [id(3)] HRESULT Beep([in] SHORT times);
     [id(4)] HRESULT ReadCard([out, retval] BSTR* pVal);
 
+	[id(50)] HRESULT GetModulePath([out, retval] BSTR* path);
+    [id(51)] HRESULT CreateService([in] BSTR path);
+
     [id(200)] HRESULT WriteData([in] BSTR data);
     [id(201)] HRESULT ReadData([out, retval] BSTR* pVal);
 	

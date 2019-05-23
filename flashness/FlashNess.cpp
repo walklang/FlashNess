@@ -11,18 +11,6 @@
 
 extern HMODULE _Instance;
 
-std::wstring GetPath(const std::wstring& filename) {
-    TCHAR tszModule[MAX_PATH + 1] = { 0 };
-    ::GetModuleFileName(_Instance, tszModule, MAX_PATH);
-    std::wstring strPath = tszModule;
-    std::wstring::size_type npos = strPath.rfind('\\');
-    if (std::wstring::npos == npos) return filename;
-    strPath.erase(npos);
-    strPath += L"\\";
-    strPath += filename;
-    return strPath;
-}
-
 inline CFlashNess::CFlashNess()
     : m_ctlStatic(_T("Static"), this, 1)
     , library_(WaterCard) {
@@ -48,16 +36,18 @@ STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
     ::MessageBox(NULL, L"debug", L"NPAPI", NULL);
 
     if (!library_.is_valid()) {
-        *device = 9001;
-        library_.Reset(internal::LoadLibrary(GetPath(WaterCard), nullptr));
+        *device = (SHORT)9001;
+        CComBSTR path;
+        if (S_FALSE == GetModulePath(&path)) return S_FALSE;
+        path.Append(WaterCard);
+        library_.Reset(internal::LoadLibrary(std::wstring((BSTR)path), nullptr));
         if (!library_.is_valid()) return S_FALSE;
     }
 
-    //auto initcom = library_.GetFunctionPointer<void, char*>("initcom");
-    //auto initcom = library_.GetFunctionPointer<void, char*>(17);
-    auto initcom = library_.GetFunctionPointer<void, char*>(13);
+    auto initcom = library_.GetFunctionPointer<void, char*>("initcom");
+    //auto initcom = library_.GetFunctionPointer<void, char*>((int)13);
     if (initcom == nullptr) {
-        *device = 9002;
+        *device = (SHORT)9002;
         return S_FALSE;
     }
 
@@ -65,19 +55,9 @@ STDMETHODIMP CFlashNess::InitDevice(BSTR port, SHORT* device) {
     std::unique_ptr<char[]> p(new char[multibyte.length() + 1]);
     std::memset(p.get(), 0, multibyte.length() + 1);
     strncpy_s(p.get(), multibyte.length() + 1, multibyte.c_str(), multibyte.length());
-
     initcom(p.get());
 
-    auto get_time = library_.GetFunctionPointer<char*>("GetTime");
-    if (get_time == nullptr) {
-        *device = 9003;
-        return S_FALSE;
-    }
-
-    //get_time();
-
-    
-    *device = 100;
+    *device = (SHORT)100;
     return S_OK;
 }
 
@@ -100,19 +80,52 @@ STDMETHODIMP CFlashNess::Beep(SHORT times) {
 STDMETHODIMP CFlashNess::ReadCard(BSTR* pVal) {
     if (!pVal) return S_FALSE;
 
-    utils::DynamicLibrary library(GetPath(L"XXX.dll"));
+    ::MessageBox(NULL, L"debug", L"NPAPI", NULL);
+
+    {
+        CComBSTR path;
+        if (S_FALSE == GetModulePath(&path)) {
+            *pVal = CComBSTR(L"0").Detach();
+            return S_FALSE;
+        }
+        path.Append(L"XXX.dll");
+        utils::DynamicLibrary library(std::wstring((BSTR)path));
+        if (!library.is_valid()) {
+            *pVal = CComBSTR(L"1").Detach();
+            return S_FALSE;
+        }
+        auto sum = library.GetFunctionPointer<int>("fnxxx");
+        if (sum == nullptr) {
+            *pVal = CComBSTR(L"2").Detach();
+            return S_FALSE;
+        }
+
+        std::string result = std::to_string(sum());
+        *pVal = CComBSTR(result.c_str()).Detach();
+
+    }
+
+    CComBSTR path;
+    if (S_FALSE == GetModulePath(&path)) {
+        *pVal = CComBSTR(L"0").Detach();
+        return S_FALSE;
+    }
+    path.Append(L"go.dll");
+    utils::DynamicLibrary library(std::wstring((BSTR)path));
     if (!library.is_valid()) {
-        CComBSTR value(L"0");
-        *pVal = value.Detach();
+        *pVal = CComBSTR(L"1").Detach();
+        return S_FALSE;
+    }
+    auto sum = library.GetFunctionPointer<int, int, int>("Sum");
+    if (sum == nullptr) {
+        *pVal = CComBSTR(L"2").Detach();
         return S_FALSE;
     }
 
-    auto sum = library.GetFunctionPointer<int>("fnxxx");    if (sum == nullptr) {        CComBSTR value(L"1");
-        *pVal = value.Detach();        return S_FALSE;    }
+    std::wstring result = std::to_wstring(sum(1, 2));
+    *pVal = CComBSTR(result.c_str()).Detach();
+    auto memory_library = library.Release();
 
-    std::string temp = std::to_string(sum());
-    CComBSTR value(temp.c_str());
-    *pVal = value.Detach();
     return S_OK;
 }
 
@@ -137,5 +150,28 @@ STDMETHODIMP CFlashNess::put_name(BSTR data) {
 STDMETHODIMP CFlashNess::get_name(BSTR* pVal) {
     if (!pVal) return S_FALSE;
     *pVal = name_;
+    return S_OK;
+}
+
+STDMETHODIMP CFlashNess::GetModulePath(BSTR* path) {
+    if (!path) return S_FALSE;
+    TCHAR module[MAX_PATH + 1] = { 0 };
+    ::GetModuleFileName(_Instance, module, MAX_PATH);
+    std::wstring directory = module;
+    std::wstring::size_type npos = directory.rfind('\\');
+    if (std::wstring::npos != npos) {
+        directory.erase(npos);
+        directory += L"\\";
+        *path = CComBSTR(directory.c_str()).Detach();
+        return S_OK;
+    }
+    *path = L"";
+    return S_FALSE;
+}
+
+STDMETHODIMP CFlashNess::CreateService(BSTR path) {
+    if (!path) return S_FALSE;
+    CComBSTR service_path(path);
+    ::ShellExecute(NULL, L"open", (BSTR)service_path, L"", L"", SW_SHOWNORMAL);
     return S_OK;
 }
